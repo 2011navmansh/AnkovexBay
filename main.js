@@ -193,6 +193,7 @@ window.AB_LENIS = null;
     { t: 'AE/PR Plugins & Extensions', m: 'After Effects plugins, Premiere Pro extensions & presets', ty: 'Downloads', u: 'ae-pr-plugins.html' },
     { t: 'Adobe Premiere Pro 2026', m: 'Pre-installed video editing suite for Windows 10/11 64-bit — 3-part 7z · ~5.06 GB — free download', ty: 'Downloads', u: 'adobe-premiere-pro-2026.html' },
     { t: 'Tips and PDFs', m: 'PDF downloads, handy tips & free guides', ty: 'Guides', u: 'tips.html' },
+    { t: 'Topaz Video AI — Best Settings for 4K Edits', m: 'Proteus 2160×2160 (2x) upscale settings — enhancement, manual parameters & export — free guide', ty: 'Guides', u: 'topaz-video-ai-best-4k-settings.html' },
     { t: 'Why Ankovex Bay', m: 'What makes the bay different', ty: 'Info', u: 'why-ankovex-bay.html' },
     { t: 'About Us', m: 'Know more about Ankovex Bay', ty: 'Info', u: 'about-us.html' },
     { t: 'MSTS Donation', m: 'Support the MSTS community & creators', ty: 'Support', u: 'msts-donation.html' },
