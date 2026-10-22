@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GitHub release push direct with offline repo Command — one PowerShell command to tag a release and upload every file in your folder as release assets using the gh CLI.">
+<meta name="theme-color" content="#050505">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ankovex Bay">
+<meta property="og:title" content="GitHub release push direct with offline repo Command — Ankovex Bay">
+<meta property="og:description" content="One PowerShell command: enter a tag, upload every file in the folder as a release — gh CLI powered, copy and go.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="https://wsrv.nl/?url=https%3A%2F%2Fiili.io%2FnVrmTga.png&w=64&h=64&fit=cover&output=png&q=90">
+<title>GitHub Release Push Command — Ankovex Bay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://wsrv.nl">
+<link rel="dns-prefetch" href="https://wsrv.nl">
+<link rel="preconnect" href="https://images.weserv.nl">
+<link rel="dns-prefetch" href="https://images.weserv.nl">
+<link rel="preconnect" href="https://iili.io">
+<link rel="dns-prefetch" href="https://iili.io">
+<link rel="preconnect" href="https://i0.wp.com">
+<link rel="dns-prefetch" href="https://i0.wp.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&icon_names=airline_seat_recline_normal,apps,archive,arrow_back,arrow_downward,arrow_forward,assignment,auto_awesome,autorenew,block,bolt,build,calendar_month,card_giftcard,category,check_circle,chevron_left,chevron_right,close,cloud_download,code,computer,construction,content_copy,content_cut,deployed_code,desktop_windows,devices_other,directions_railway,dns,download,edit_note,event,expand_more,explore,extension,factory,favorite,folder,folder_copy,folder_zip,forest,fullscreen,gavel,graphic_eq,groups,history,home,how_to_reg,hub,info,install_desktop,inventory_2,keyboard_arrow_down,keyboard_arrow_up,keyboard_double_arrow_left,keyboard_double_arrow_right,landscape,lightbulb,list,local_fire_department,local_shipping,lock,mail,map,menu_book,movie,package_2,palette,person,person_add,photo_camera,playlist_add,redeem,restart_alt,reviews,rocket_launch,scale,schedule,sd_card,sd_storage,search,sell,send,sentiment_very_dissatisfied,settings,settings_input_component,shield,shopping_bag,smart_display,smartphone,sports_esports,sports_score,storage,task_alt,timeline,touch_app,train,tune,update,upload_file,usb,verified,view_list,visibility,volume_up,volunteer_activism,warning,wifi_off,workspace_premium&display=block" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261021c">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="premium.css?v=20261022a">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <img src="https://wsrv.nl/?url=https%3A%2F%2Fiili.io%2FnVrmTga.png&w=400&output=webp&q=82&we" alt="Ankovex Bay" class="brand-logo">
+    </a>
+    <nav class="navbar-nav">
+      <a href="index.html" class="nav-tab">Home</a>
+      <a href="gallery.html" class="nav-tab">Gallery</a>
+      <div class="nav-dropdown">
+        <a href="msts-addons.html" class="nav-tab">MSTS Addons <span class="material-symbols-outlined">expand_more</span></a>
+        <div class="nav-dropdown-menu">
+          <a class="nav-dropdown-item" href="msts-routes.html">Routes</a>
+          <a class="nav-dropdown-item" href="msts-locomotives.html">Locomotives</a>
+          <a class="nav-dropdown-item" href="msts-sounds.html">Sounds</a>
+          <a class="nav-dropdown-item" href="realistic-coaches.html">Realistic Coaches</a>
+          <a class="nav-dropdown-item" href="msts-reshades.html">Reshades</a>
+          <a class="nav-dropdown-item" href="activity.html">Activities</a>
+          <a class="nav-dropdown-item" href="msts-addons.html">All Addons <span class="material-symbols-outlined">chevron_right</span></a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="softwares.html" class="nav-tab active">Downloads <span class="material-symbols-outlined">expand_more</span></a>
+        <div class="nav-dropdown-menu">
+          <a class="nav-dropdown-item" href="softwares.html">Softwares</a>
+          <a class="nav-dropdown-item" href="ae-pr-plugins.html">AE/PR Plugins</a>
+          <a class="nav-dropdown-item" href="tips.html">Tips &amp; PDFs</a>
+        </div>
+      </div>
+            <div class="nav-dropdown">
+        <a href="genre.html" class="nav-tab">All Pages <span class="material-symbols-outlined">expand_more</span></a>
+        <div class="nav-dropdown-menu">
+          <span class="nav-dropdown-label">MSTS Addons</span>
+          <a class="nav-dropdown-item" href="msts-addons.html">All Addons</a>
+          <a class="nav-dropdown-item" href="msts-routes.html">Routes</a>
+          <a class="nav-dropdown-item" href="msts-locomotives.html">Locomotives</a>
+          <a class="nav-dropdown-item" href="msts-sounds.html">Sounds</a>
+          <a class="nav-dropdown-item" href="realistic-coaches.html">Realistic Coaches</a>
+          <a class="nav-dropdown-item" href="msts-reshades.html">Reshades</a>
+          <a class="nav-dropdown-item" href="activity.html">Activities</a>
+          <span class="nav-dropdown-label">Downloads</span>
+          <a class="nav-dropdown-item" href="games.html">Games</a>
+          <a class="nav-dropdown-item" href="softwares.html">Softwares</a>
+          <a class="nav-dropdown-item" href="ae-pr-plugins.html">AE/PR Plugins</a>
+          <a class="nav-dropdown-item" href="tips.html">Tips &amp; PDFs</a>
+          <span class="nav-dropdown-label">Explore</span>
+          <a class="nav-dropdown-item" href="genre.html">All Pages</a>
+          <a class="nav-dropdown-item" href="why-ankovex-bay.html">Why Us</a>
+          <a class="nav-dropdown-item" href="about-us.html">About</a>
+          <a class="nav-dropdown-item" href="msts-donation.html">MSTS Donation</a>
+          <span class="nav-dropdown-label">Legal</span>
+          <a class="nav-dropdown-item" href="privacy-policy.html">Privacy Policy</a>
+          <a class="nav-dropdown-item" href="dmca.html">DMCA</a>
+        </div>
+      </div>
+      <a href="why-ankovex-bay.html" class="nav-tab">Why Us</a>
+              <a href="about-us.html" class="nav-tab">About</a>
+    </nav>
+    <div class="nav-actions">
+      <span class="free-chip"><span class="material-symbols-outlined">redeem</span> 100% Free</span>
+      <button class="nav-action-icon" data-open-search title="Search"><span class="material-symbols-outlined">search</span></button>
+      <a href="genre.html" class="btn btn-primary btn-sm">Browse</a>
+      <button class="mobile-menu-btn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="gallery.html">Gallery</a>
+  <span class="mobile-menu-label">MSTS Addons</span>
+  <div class="msub">
+    <a href="msts-addons.html">All Addons</a>
+    <a href="msts-routes.html">Routes</a>
+    <a href="msts-locomotives.html">Locomotives</a>
+    <a href="msts-sounds.html">Sounds</a>
+    <a href="realistic-coaches.html">Realistic Coaches</a>
+    <a href="msts-reshades.html">Reshades</a>
+    <a href="activity.html">Activities</a>
+  </div>
+  <span class="mobile-menu-label">Downloads</span>
+  <div class="msub">
+    <a href="games.html">Games</a>
+    <a href="softwares.html">Softwares</a>
+    <a href="ae-pr-plugins.html">AE/PR Plugins</a>
+    <a href="tips.html">Tips &amp; PDFs</a>
+  </div>
+  <a href="genre.html">All Pages</a>
+  <a href="why-ankovex-bay.html">Why Us</a>
+  <a href="about-us.html">About</a>
+  <a href="msts-donation.html">MSTS Donation</a>
+</div>
+<div id="mobileMenuBackdrop"></div>
+
+<!-- Search modal -->
+<div class="search-modal" id="searchModal">
+  <div class="search-box">
+    <button class="search-close" title="Close"><span class="material-symbols-outlined">close</span></button>
+    <h3>Universal Search</h3>
+    <div class="search-field">
+      <span class="material-symbols-outlined">search</span>
+      <input type="text" id="modalSearchInput" placeholder="Search routes, locomotives, sounds, plugins…" autocomplete="off">
+    </div>
+    <div style="font-family:ui-monospace,'SFMono-Regular',Menlo,Consolas,'Liberation Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#666;margin-bottom:10px">Browse Categories</div>
+    <div class="search-tags">
+      <a href="msts-addons.html">MSTS Addons</a>
+      <a href="msts-routes.html">Routes</a>
+      <a href="msts-locomotives.html">Locomotives</a>
+      <a href="msts-reshades.html">Reshades</a>
+      <a href="games.html">Games</a>
+      <a href="softwares.html">Softwares</a>
+      <a href="ae-pr-plugins.html">AE/PR Plugins</a>
+      <a href="tips.html">Tips &amp; PDFs</a>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="material-symbols-outlined">chevron_right</span>
+      <a href="softwares.html">Downloads</a>
+      <span class="material-symbols-outlined">chevron_right</span>
+      <a href="tips.html">Tips &amp; PDFs</a>
+      <span class="material-symbols-outlined">chevron_right</span>
+      <span>Release Push Command</span>
+    </div>
+    <h1>GitHub Release Push <span class="gold">Command</span></h1>
+    <p>Publish a release straight from an offline repo folder — enter a tag name, and the command uploads every file in the folder as release assets in one go.</p>
+  </div>
+</section>
+
+<!-- ================= COMMAND ================= -->
+<section class="section tight">
+  <div class="container">
+    <div class="product-meta" style="margin-bottom:20px">
+      <span class="meta-chip"><span class="material-symbols-outlined">code</span> PowerShell</span>
+      <span class="meta-chip"><span class="material-symbols-outlined">upload_file</span> gh CLI · release upload</span>
+      <span class="meta-chip"><span class="material-symbols-outlined">folder</span> Works on offline repo folders</span>
+      <span class="meta-chip"><span class="material-symbols-outlined">verified</span> Copy · Paste · Run</span>
+    </div>
+
+    <h2 class="sec-title">The <span class="gold">Command</span></h2>
+    <p style="margin-top:14px;color:var(--muted);max-width:900px">Copy the command below, paste it into a <b>PowerShell</b> window opened inside your repo folder, and press Enter. It asks for a tag name — numeric tags automatically get a <code>v</code> prefix, spaces become underscores — then creates the release and uploads every file in the folder.</p>
+
+    <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;align-items:stretch">
+      <textarea id="cmdBox" readonly rows="4" spellcheck="false" style="flex:1 1 640px;min-width:320px;background:#0b0b0b;border:1px solid #2a2a2a;border-radius:12px;color:#e8e8e8;font-family:ui-monospace,'SFMono-Regular',Menlo,Consolas,'Liberation Mono',monospace;font-size:.92rem;line-height:1.6;padding:16px;resize:vertical">$InputTag = Read-Host "Enter Tag Name"; $CleanTag = $InputTag.Trim() -replace ' ', '_'; if ($CleanTag -match '^\d+$') { $TagName = "v$CleanTag" } else { $TagName = $CleanTag }; $AllFiles = (Get-ChildItem -Path . -File).FullName; gh release create $TagName $AllFiles --title "Release $TagName" --notes "Automated release push"</textarea>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="var b=document.getElementById('cmdBox');b.select();navigator.clipboard.writeText(b.value).then(function(){},function(){document.execCommand('copy')});" title="Copy"><span class="material-symbols-outlined">content_copy</span> Copy Command</button>
+      <button class="btn btn-secondary" onclick="document.getElementById('cmdBox').select();document.execCommand('copy');"><span class="material-symbols-outlined">content_cut</span> Select All</button>
+      <a href="tips.html" class="btn btn-secondary"><span class="material-symbols-outlined">arrow_back</span> Back to Tips &amp; PDFs</a>
+    </div>
+
+    <div class="notice" style="margin-top:22px">
+      <span class="material-symbols-outlined">info</span>
+      <p><b>What it does, step by step:</b> asks for the tag via <code>Read-Host</code> → trims it and swaps spaces for underscores → if the tag is pure digits, prefixes it with <code>v</code> → collects the full path of every <b>file</b> in the current folder → runs <code>gh release create</code> with all files as assets, titled <code>Release &lt;tag&gt;</code> with the note <code>Automated release push</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW TO USE ================= -->
+<section class="section section-line">
+  <div class="container">
+    <h2 class="sec-title">How to <span class="gold">Use</span></h2>
+    <ol style="max-width:900px;margin-top:18px;line-height:1.9">
+      <li><b>Install the tools</b> — you need the GitHub CLI (<code>gh</code>) installed and signed in once with <code>gh auth login</code>.</li>
+      <li><b>Open the folder</b> — put the files you want to upload into your offline repo folder (or any folder synced there), right-click the folder and choose <b>Open in Terminal</b> (PowerShell).</li>
+      <li><b>Paste the command</b> — right-click to paste in PowerShell, press Enter.</li>
+      <li><b>Enter the tag</b> — type your tag when asked (e.g. <code>v54813</code> or <code>hhgg5587</code>) and press Enter.</li>
+      <li><b>Done</b> — the release is created with every file in the folder attached as an asset. Workspace files only: subfolders are not scanned, only files directly in the folder.</li>
+    </ol>
+    <div class="notice">
+      <span class="material-symbols-outlined">warning</span>
+      <p>Requires the folder to be inside a git repository with push rights (<code>gh</code> targets the repo of the current folder). Large releases may take a while to upload — let the terminal finish on its own.</p>
+    </div>
+    <div style="margin-top:26px">
+      <a href="tips.html" class="btn btn-primary"><span class="material-symbols-outlined">arrow_back</span> Back to Tips &amp; PDFs</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="foot">
+    <div class="foot-brand">
+      <span class="foot-wordmark">ANKOVEX BAY</span>
+      <p>India's free gaming &amp; train sim download hub. Powering Indian train simulation, MSTS addons, digital content and creative tools — engineered for precision, always free.</p>
+      <div class="foot-contact">
+        <div class="foot-contact-label">Ankovex Bay Hub India</div>
+        <div class="foot-contact-label" style="margin-bottom:10px">100% Free · No Payment Ever</div>
+        <a href="mailto:br46plw06@mozmail.com"><span class="material-symbols-outlined">mail</span> br46plw06@mozmail.com</a>
+      </div>
+      <div class="socials">
+        <a href="#" title="Telegram"><span class="material-symbols-outlined">send</span></a>
+        <a href="#" title="Discord"><span class="material-symbols-outlined">sports_esports</span></a>
+        <a href="#" title="YouTube"><span class="material-symbols-outlined">smart_display</span></a>
+        <a href="#" title="Instagram"><span class="material-symbols-outlined">photo_camera</span></a>
+      </div>
+    </div>
+    <div>
+      <h5>Marketplace</h5>
+      <ul>
+        <li><a href="msts-addons.html">MSTS Addons</a></li>
+        <li><a href="msts-routes.html">Routes</a></li>
+        <li><a href="msts-locomotives.html">Locomotives</a></li>
+        <li><a href="msts-sounds.html">Sounds</a></li>
+        <li><a href="realistic-coaches.html">Realistic Coaches</a></li>
+        <li><a href="msts-reshades.html">Reshades</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Company</h5>
+      <ul>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about-us.html">About Ankovex Bay</a></li>
+        <li><a href="why-ankovex-bay.html">Why Ankovex Bay</a></li>
+        <li><a href="genre.html">All Pages</a></li>
+        <li><a href="activity.html">Activities</a></li>
+        <li><a href="msts-donation.html">MSTS Donation</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Support</h5>
+      <ul>
+        <li><a href="softwares.html">Softwares</a></li>
+        <li><a href="ae-pr-plugins.html">AE/PR Plugins</a></li>
+        <li><a href="tips.html">Tips &amp; PDFs</a></li>
+        <li><a href="dmca.html">DMCA</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="mailto:br46plw06@mozmail.com">Contact Support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div>&copy; 2026 <span>Ankovex Bay</span></div>
+    <div>Free Gaming &amp; Train Sim Hub</div>
+  </div>
+</footer>
+
+<button id="top" aria-label="Back to top"><span class="material-symbols-outlined">keyboard_arrow_up</span></button>
+
+<script src="main.js?v=20261021c"></script>
+<script src="premium.js?v=20261021d" defer></script>
+</body>
+</html>
