@@ -670,7 +670,7 @@ window.AB_LENIS = null;
     document.querySelectorAll('a[href]').forEach(function (a) {
       var href = a.getAttribute('href') || '';
       if (!href || href.charAt(0) === '#' || href.indexOf('mailto:') === 0) return;
-      var isExternal = /^https?:\/\//i.test(href) && href.indexOf(location.host) === -1;
+      var isExternal = /^https?:\/\//i.test(href) && (location.protocol === 'file:' || href.indexOf(location.host) === -1);
       if (!isExternal && !a.hasAttribute('download')) return;
       if (!isDlLink(a)) return;
       a.setAttribute('data-href', href.replace(/&amp;/g, '&'));
@@ -686,7 +686,7 @@ window.AB_LENIS = null;
       if (!href) {
         href = el.getAttribute('href') || '';
         if (!href || href.charAt(0) === '#' || href.indexOf('mailto:') === 0) return;
-        var isExternal = /^https?:\/\//i.test(href) && href.indexOf(location.host) === -1;
+        var isExternal = /^https?:\/\//i.test(href) && (location.protocol === 'file:' || href.indexOf(location.host) === -1);
         if (!isExternal && !el.hasAttribute('download')) return;
         if (!isDlLink(el)) return;
       }
