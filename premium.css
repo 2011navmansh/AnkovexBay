@@ -19,16 +19,15 @@
 
 /* ---------- Canvas: deeper ink, warmer light, fine film grain ---------- */
 body::before{
-  background-color:#050505;
+  background-color:#060504;
   background-image:
-    radial-gradient(ellipse 70% 46% at 50% -12%, rgba(212,175,55,.13), transparent 62%),
-    radial-gradient(ellipse 44% 34% at 92% 8%, rgba(193,18,31,.07), transparent 62%),
-    linear-gradient(rgba(212,175,55,.065) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(212,175,55,.065) 1px, transparent 1px),
-    linear-gradient(rgba(212,175,55,.12) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(212,175,55,.12) 2px, transparent 2px),
-    radial-gradient(ellipse at 85% 105%, rgba(193,18,31,.06), transparent 55%);
-  background-size:auto, auto, 96px 96px, 96px 96px, 192px 192px, 192px 192px, auto;
+    radial-gradient(ellipse 80% 50% at 48% -10%, rgba(212,175,55,.11), transparent 64%),
+    radial-gradient(ellipse 50% 38% at 90% 10%, rgba(193,18,31,.06), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 12% 85%, rgba(212,175,55,.04), transparent 55%),
+    linear-gradient(rgba(212,175,55,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,.03) 1px, transparent 1px),
+    radial-gradient(ellipse at 82% 108%, rgba(193,18,31,.05), transparent 50%);
+  background-size:auto, auto, auto, 120px 120px, 120px 120px, auto;
 }
 body::after{
   content:'';
@@ -36,9 +35,9 @@ body::after{
   inset:0;
   z-index:1;
   pointer-events:none;
-  opacity:.026;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-  background-size:180px 180px;
+  opacity:.018;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+  background-size:200px 200px;
 }
 
 /* ---------- Editorial accents ---------- */
@@ -263,9 +262,9 @@ body.menu-open .mobile-menu-btn span{background:var(--gold-champagne)}
 }
 .hero-slides::after{
   background:
-    linear-gradient(90deg,rgba(4,4,4,.82) 0%,rgba(4,4,4,.5) 52%,rgba(4,4,4,.22) 100%),
-    radial-gradient(ellipse at 28% 52%,rgba(4,4,4,.4),transparent 62%),
-    linear-gradient(rgba(4,4,4,0) 50%,rgba(4,4,4,.42) 100%);
+    linear-gradient(90deg,rgba(4,4,4,.68) 0%,rgba(4,4,4,.38) 52%,rgba(4,4,4,.14) 100%),
+    radial-gradient(ellipse at 28% 52%,rgba(4,4,4,.28),transparent 62%),
+    linear-gradient(rgba(4,4,4,0) 50%,rgba(4,4,4,.32) 100%);
 }
 .hero-inner{max-width:880px}
 .hero-badge{
@@ -319,9 +318,9 @@ body.menu-open .mobile-menu-btn span{background:var(--gold-champagne)}
 .hero-aside{
   display:none;
   position:absolute;
-  right:clamp(16px,3vw,40px);
+  right:clamp(16px,2.5vw,32px);
   top:50%;
-  width:300px;
+  width:210px;
   padding:0;
   border:0;
   background:none;
@@ -343,13 +342,14 @@ body.menu-open .mobile-menu-btn span{background:var(--gold-champagne)}
    rest of the site's CSS still applies. */
 .ha-product{
   width:100%;
-  border-radius:18px;
-  border:1px solid rgba(247,231,174,.20);
-  background:linear-gradient(165deg,rgba(31,27,17,.88),rgba(10,9,8,.82));
-  -webkit-backdrop-filter:blur(14px) saturate(1.15);
-  backdrop-filter:blur(14px) saturate(1.15);
-  transform:translateZ(0);
-  box-shadow:0 24px 60px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07),0 0 50px rgba(212,175,55,.06);
+  border-radius:14px;
+  border:1px solid rgba(247,231,174,.18);
+  background:linear-gradient(165deg,rgba(31,27,17,.72),rgba(10,9,8,.62));
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);
+  backdrop-filter:blur(16px) saturate(1.2);
+  transform:translateZ(0) scale(.86);
+  transform-origin:center center;
+  box-shadow:0 18px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06),0 0 40px rgba(212,175,55,.05);
 }
 /* Champagne hairline across the top edge — the "featured" signature. */
 .ha-product::before{
@@ -361,14 +361,14 @@ body.menu-open .mobile-menu-btn span{background:var(--gold-champagne)}
   background:linear-gradient(90deg,transparent,rgba(255,248,220,.55) 28%,rgba(255,252,235,.9) 50%,rgba(255,248,220,.55) 72%,transparent);
   pointer-events:none;
 }
-.product-card.ha-product:hover{transform:translateY(-8px)}
+.product-card.ha-product:hover{transform:translateZ(0) scale(.86) translateY(-6px)}
 .ha-product .pc-badge{
   background:linear-gradient(135deg,#f4e3a4,#dfbc4a 58%,#b98f24);
   color:#0b0800;
   padding:6px 11px;
   box-shadow:0 8px 22px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.55);
 }
-.ha-product .pc-media{aspect-ratio:16/9;border-bottom:1px solid rgba(247,231,174,.13)}
+.ha-product .pc-media{aspect-ratio:16/8.2;border-bottom:1px solid rgba(247,231,174,.13)}
 .ha-product .pc-media::after{
   background:linear-gradient(180deg,rgba(255,252,238,.05),transparent 34%,rgba(4,4,4,.24) 92%);
 }
@@ -1241,4 +1241,168 @@ footer::before{
   .ha-product .pc-slide.is-active{animation:none}
   .btn-primary::before{display:none}
   .hero-aside{transition:none}
+}
+
+body{
+  color:#f5f3ef;
+  text-rendering:optimizeLegibility;
+}
+
+.product-card:nth-child(odd){
+  transform:rotate(-.15deg);
+}
+.product-card:nth-child(even){
+  transform:rotate(.12deg);
+}
+.product-card:hover{
+  transform:translateY(-6px) rotate(0deg) scale(1.008);
+}
+
+.category-card:nth-child(3n+1){
+  border-radius:20px 18px 20px 22px;
+}
+.category-card:nth-child(3n+2){
+  border-radius:18px 22px 19px 20px;
+}
+.category-card:nth-child(3n){
+  border-radius:22px 20px 18px 19px;
+}
+.category-card:hover{
+  transform:translateY(-5px) rotate(-.2deg);
+}
+
+.feat:nth-child(odd){
+  border-radius:14px 16px 14px 15px;
+}
+.feat:nth-child(even){
+  border-radius:16px 14px 15px 14px;
+}
+.feat:hover{
+  transform:translateY(-4px) rotate(.15deg);
+}
+
+.step:nth-child(odd):hover{
+  transform:translateY(-4px) rotate(-.18deg);
+}
+.step:nth-child(even):hover{
+  transform:translateY(-4px) rotate(.18deg);
+}
+
+.pc-desc,.prose p,.prose li,.feat p,.step p,.sec-sub{
+  letter-spacing:.008em;
+  word-spacing:.02em;
+}
+
+.product-card{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 2px 4px rgba(0,0,0,.15),
+    0 8px 20px rgba(0,0,0,.2),
+    0 24px 48px rgba(0,0,0,.18);
+}
+.product-card:hover{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 4px 8px rgba(0,0,0,.12),
+    0 16px 40px rgba(0,0,0,.28),
+    0 36px 72px rgba(0,0,0,.22),
+    0 0 0 1px rgba(212,175,55,.1),
+    0 0 50px rgba(212,175,55,.06);
+}
+
+.category-card{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.035),
+    0 2px 6px rgba(0,0,0,.18),
+    0 12px 28px rgba(0,0,0,.16);
+}
+.category-card:hover{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 4px 10px rgba(0,0,0,.14),
+    0 20px 50px rgba(0,0,0,.28),
+    0 36px 70px rgba(0,0,0,.2),
+    0 0 0 1px rgba(212,175,55,.1),
+    0 0 55px rgba(212,175,55,.07);
+}
+
+.section-head{
+  margin-bottom:clamp(28px,4.2vw,44px);
+}
+.section:nth-child(even){
+  padding-top:clamp(54px,6.8vw,82px);
+}
+.section:nth-child(odd){
+  padding-bottom:clamp(48px,6vw,76px);
+}
+
+.kicker{
+  letter-spacing:.2em;
+}
+
+.hero-title{
+  letter-spacing:-.04em;
+}
+
+.hero-sub{
+  letter-spacing:.005em;
+  line-height:1.72;
+}
+
+.nav-tab{
+  transition:all .28s cubic-bezier(.25,.46,.45,.94);
+}
+.nav-tab:hover{
+  transform:translateY(-1px) rotate(-.3deg);
+}
+
+.btn{
+  transition:all .32s cubic-bezier(.25,.46,.45,.94);
+}
+.btn-primary:hover{
+  transform:translateY(-2px) rotate(-.25deg) scale(1.015);
+}
+.btn-secondary:hover{
+  transform:translateY(-2px) rotate(.2deg) scale(1.01);
+}
+
+.icon-btn{
+  transition:all .26s cubic-bezier(.25,.46,.45,.94);
+}
+.icon-btn:hover{
+  transform:translateY(-2px) rotate(-3deg) scale(1.06);
+}
+
+.featured-wrap{
+  border-radius:22px 20px 20px 22px;
+}
+
+.stats{
+  border-radius:22px 20px 20px 22px;
+}
+
+.cta-band{
+  border-radius:26px 22px 24px 22px;
+}
+
+@media(max-width:768px){
+  .product-card:nth-child(odd),
+  .product-card:nth-child(even){
+    transform:none;
+  }
+  .product-card:hover{
+    transform:translateY(-4px);
+  }
+  .category-card:hover,
+  .feat:hover,
+  .step:hover{
+    transform:translateY(-3px);
+  }
+  .nav-tab:hover{
+    transform:none;
+  }
+  .btn-primary:hover,
+  .btn-secondary:hover{
+    transform:translateY(-2px);
+  }
 }
