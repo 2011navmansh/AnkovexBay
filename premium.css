@@ -319,9 +319,9 @@ body.menu-open .mobile-menu-btn span{background:var(--gold-champagne)}
 .hero-aside{
   display:none;
   position:absolute;
-  right:clamp(16px,4.5vw,48px);
+  right:clamp(16px,3vw,40px);
   top:50%;
-  width:356px;
+  width:300px;
   padding:0;
   border:0;
   background:none;
@@ -343,16 +343,13 @@ body.menu-open .mobile-menu-btn span{background:var(--gold-champagne)}
    rest of the site's CSS still applies. */
 .ha-product{
   width:100%;
-  border-radius:24px;
-  border:1px solid rgba(247,231,174,.22);
-  background:linear-gradient(165deg,rgba(31,27,17,.97),rgba(10,9,8,.985));
-  /* Paint-stable glass: no backdrop-filter. This card sits above two
-     endless animations (hero slideshow + aurora), so the blur forced a
-     full re-raster of the card every frame, and on some Chrome/GPU
-     combos the re-raster intermittently dropped the text. The slightly
-     higher alpha keeps the same look with zero per-frame re-blurs. */
+  border-radius:18px;
+  border:1px solid rgba(247,231,174,.20);
+  background:linear-gradient(165deg,rgba(31,27,17,.88),rgba(10,9,8,.82));
+  -webkit-backdrop-filter:blur(14px) saturate(1.15);
+  backdrop-filter:blur(14px) saturate(1.15);
   transform:translateZ(0);
-  box-shadow:0 40px 90px rgba(0,0,0,.62),inset 0 1px 0 rgba(255,255,255,.08),0 0 70px rgba(212,175,55,.07);
+  box-shadow:0 24px 60px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07),0 0 50px rgba(212,175,55,.06);
 }
 /* Champagne hairline across the top edge — the "featured" signature. */
 .ha-product::before{
@@ -379,7 +376,7 @@ body.menu-open .mobile-menu-btn span{background:var(--gold-champagne)}
    an animation so it also beats the .product-card:hover img reset. */
 @keyframes haKen{from{transform:scale(1)}to{transform:scale(1.065)}}
 .ha-product .pc-slide.is-active{animation:haKen 5.6s cubic-bezier(.22,.61,.35,1) both}
-.ha-product .pc-body{padding:19px 21px 20px}
+.ha-product .pc-body{padding:15px 16px 16px}
 .ha-product .pc-vendor{
   display:flex;
   align-items:center;
@@ -393,8 +390,8 @@ body.menu-open .mobile-menu-btn span{background:var(--gold-champagne)}
   height:1px;
   background:linear-gradient(90deg,rgba(247,231,174,.3),transparent);
 }
-.ha-product .pc-title{font-size:1.28rem;font-weight:900;line-height:1.24;letter-spacing:-.016em;margin-bottom:9px}
-.ha-product .pc-desc{font-size:.835rem;line-height:1.6;-webkit-line-clamp:3;margin-bottom:12px}
+.ha-product .pc-title{font-size:1.05rem;font-weight:900;line-height:1.24;letter-spacing:-.016em;margin-bottom:7px}
+.ha-product .pc-desc{font-size:.78rem;line-height:1.55;-webkit-line-clamp:2;margin-bottom:10px}
 /* Shows what ships, at a glance — gold chips under the description. */
 .ha-specs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}
 .ha-specs span{
