@@ -1,0 +1,449 @@
+/* ============================================================
+   ANKOVEX BAY — DEEPAVALI FESTIVE LAYER (2026, optimised)
+   Theme: "Midnight Utsav" — deep maroon night sky, marigold
+   gold, diya glow, toran garland, rangoli mandalas, fireworks.
+   Applied site-wide (diwali.js decorates every page).
+
+   PERF RULES OF THIS FILE:
+   · every continuous animation is compositor-only
+     (transform / opacity — never filter, box-shadow, or
+     background-position while things are moving)
+   · static drop-shadows are kept to a minimum
+   · decorative layers are absolutely sized; no layout work
+   Loads after premium.css. Purely additive.
+   ============================================================ */
+
+:root{
+  --dvl-saffron:#ff9a3d;
+  --dvl-marigold:#f2711c;
+  --dvl-flame:#ffc24f;
+  --dvl-rose:#d43a2e;
+  --dvl-leaf:#4c8f4e;
+  --dvl-night:#170a04;
+  --dvl-glow:rgba(255,154,61,.28);
+  --dvl-hairline:rgba(255,154,61,.22);
+}
+
+/* ---------- 1. Night sky: warm maroon & ember washes (static) ---------- */
+body::before{
+  background-color:var(--dvl-night);
+  background-image:
+    radial-gradient(ellipse 90% 55% at 50% -12%, rgba(255,154,61,.16), transparent 62%),
+    radial-gradient(ellipse 55% 40% at 88% 6%, rgba(212,58,46,.12), transparent 60%),
+    radial-gradient(ellipse 50% 36% at 6% 22%, rgba(242,113,28,.08), transparent 58%),
+    radial-gradient(ellipse 60% 40% at 50% 108%, rgba(255,196,79,.10), transparent 55%),
+    linear-gradient(rgba(255,154,61,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,154,61,.035) 1px, transparent 1px);
+  background-size:auto, auto, auto, auto, 120px 120px, 120px 120px;
+}
+
+::selection{background:rgba(255,154,61,.35);color:#fff}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--dvl-saffron),#7a3a10)}
+
+/* ---------- 2. Fireworks & ember canvas (JS inserts it) ---------- */
+#diwali-canvas{
+  position:fixed;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  opacity:.9;
+  contain:strict;
+}
+
+/* ---------- 3. Festive greeting ribbon ---------- */
+.diwali-ribbon{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:1001;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  padding:0 42px;
+  overflow:hidden;
+  contain:paint;
+  background:linear-gradient(90deg,#521204 0%,#7a2007 22%,#a63a0b 50%,#7a2007 78%,#521204 100%);
+  box-shadow:0 6px 26px rgba(0,0,0,.5);
+}
+/* shine sweep: small strip moved with transform only (GPU) */
+.diwali-ribbon::after{
+  content:'';
+  position:absolute;
+  top:0;bottom:0;
+  left:-30%;
+  width:22%;
+  background:linear-gradient(105deg,transparent 0%,rgba(255,224,138,.26) 50%,transparent 100%);
+  animation:dvlShine 6.5s linear infinite;
+  will-change:transform;
+  pointer-events:none;
+}
+.diwali-ribbon::before{
+  content:'';
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,215,120,.75) 30%,rgba(255,236,178,.95) 50%,rgba(255,215,120,.75) 70%,transparent);
+}
+.diwali-ribbon-text{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  white-space:nowrap;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#ffe9c4;
+  text-shadow:0 1px 8px rgba(0,0,0,.55);
+}
+.diwali-ribbon-text .dvl-script{
+  font-family:'Instrument Serif',Georgia,'Times New Roman',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:15px;
+  letter-spacing:.02em;
+  text-transform:none;
+  color:#ffd98a;
+  text-shadow:0 0 14px rgba(255,180,80,.6),0 1px 6px rgba(0,0,0,.6);
+}
+.diwali-ribbon .dvl-sep{
+  width:1px;height:14px;
+  background:rgba(255,224,150,.4);
+}
+.diwali-ribbon .dvl-spark{
+  color:#ffd98a;
+  font-size:15px;
+  animation:dvlTwinkle 2.6s ease-in-out infinite;
+}
+/* tiny CSS diya (static glow, flame flickers via opacity only) */
+.dvl-diya{
+  position:relative;
+  width:12px;height:12px;
+  flex:none;
+  transform:translateZ(0);
+}
+.dvl-diya::before{
+  content:'';
+  position:absolute;
+  left:50%;top:1px;
+  width:5px;height:7px;
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 78%,#fff4c9 0%,#ffc24f 46%,#ff8a2a 78%,transparent 100%);
+  border-radius:50% 50% 46% 54%/68% 68% 32% 32%;
+  box-shadow:0 0 9px 2px rgba(255,164,60,.75);
+  animation:dvlFlicker 1.6s ease-in-out infinite;
+}
+.dvl-diya::after{
+  content:'';
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:5px;
+  background:linear-gradient(180deg,#8a4a12,#c26a1e);
+  border-radius:2px 2px 50% 50%/2px 2px 90% 90%;
+  box-shadow:0 0 7px rgba(255,150,50,.35);
+}
+@keyframes dvlFlicker{
+  0%,100%{opacity:.92;transform:translateX(-50%) scaleY(1)}
+  50%{opacity:1;transform:translateX(-50%) scaleY(1.12)}
+}
+@keyframes dvlShine{
+  from{transform:translateX(0)}
+  to{transform:translateX(590%)}
+}
+@keyframes dvlTwinkle{
+  0%,100%{opacity:.6;transform:scale(.85)}
+  50%{opacity:1;transform:scale(1.08)}
+}
+
+/* navbar sits below the ribbon */
+.navbar{top:36px}
+.navbar::before{
+  background:linear-gradient(90deg,transparent,rgba(255,196,107,.6) 30%,rgba(255,220,150,.85) 50%,rgba(255,196,107,.6) 70%,transparent);
+}
+.navbar.scrolled{
+  border-bottom-color:rgba(255,154,61,.25);
+  box-shadow:0 14px 44px rgba(23,10,4,.6);
+}
+
+/* ---------- 4. Toran garland (transform-only sway) ---------- */
+.diwali-toran{
+  position:absolute;
+  top:96px;
+  left:0;right:0;
+  height:86px;
+  z-index:1;
+  pointer-events:none;
+  opacity:.95;
+  transform:translateZ(0);
+  will-change:transform;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='86' viewBox='0 0 260 86'%3E%3Cpath d='M0 8 Q65 16 130 8 T260 8' fill='none' stroke='%23ffd98a' stroke-width='1.6' opacity='.85'/%3E%3Cpath d='M28 12 q-7 14 -2 24 q8 -8 10 -22 z' fill='%234c8f4e'/%3E%3Cpath d='M42 14 q6 13 2 23 q-9 -6 -11 -21 z' fill='%235ea455'/%3E%3Cpath d='M118 12 q-7 15 -1 26 q8 -9 10 -24 z' fill='%235ea455'/%3E%3Cpath d='M134 13 q6 13 2 23 q-9 -6 -11 -21 z' fill='%234c8f4e'/%3E%3Cpath d='M206 12 q-6 13 -2 22 q8 -7 9 -20 z' fill='%234c8f4e'/%3E%3Ccircle cx='76' cy='24' r='9' fill='%23f2711c'/%3E%3Ccircle cx='76' cy='24' r='5' fill='%23ff9a3d'/%3E%3Ccircle cx='76' cy='24' r='2' fill='%23ffd98a'/%3E%3Ccircle cx='76' cy='24' r='14' fill='none' stroke='%23ff9a3d' stroke-opacity='.18'/%3E%3Ccircle cx='76' cy='18' r='3.4' fill='%23ff9a3d' opacity='.9'/%3E%3Ccircle cx='170' cy='22' r='10' fill='%23f2711c'/%3E%3Ccircle cx='170' cy='22' r='5.6' fill='%23ff9a3d'/%3E%3Ccircle cx='170' cy='22' r='2.2' fill='%23ffd98a'/%3E%3Ccircle cx='170' cy='22' r='15' fill='none' stroke='%23ff9a3d' stroke-opacity='.18'/%3E%3Ccircle cx='170' cy='15' r='3.6' fill='%23ff9a3d' opacity='.9'/%3E%3Ccircle cx='240' cy='25' r='7.4' fill='%23f2711c'/%3E%3Ccircle cx='240' cy='25' r='4' fill='%23ff9a3d'/%3E%3Ccircle cx='240' cy='25' r='1.6' fill='%23ffd98a'/%3E%3Ccircle cx='10' cy='22' r='6' fill='%23f2711c'/%3E%3Ccircle cx='10' cy='22' r='3' fill='%23ff9a3d'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;
+  background-size:auto 86px;
+  animation:dvlToranSway 9s ease-in-out infinite;
+  transform-origin:top center;
+}
+@keyframes dvlToranSway{
+  0%,100%{transform:skewX(0deg)}
+  50%{transform:skewX(-1deg)}
+}
+
+/* ---------- 5. Hero: greeting line, flame horizon, rangoli ---------- */
+.hero-home::after{
+  content:'';
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:140px;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(255,140,40,.13) 62%,rgba(255,170,70,.22) 100%);
+}
+.hero-home::before{
+  background:radial-gradient(ellipse 70% 52% at 50% 118%,rgba(255,140,40,.22),transparent 70%);
+}
+.diwali-greet{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:22px;
+  animation:fadeIn .9s ease both;
+}
+.diwali-greet .dvl-rule{
+  height:1px;width:54px;
+  background:linear-gradient(90deg,transparent,rgba(255,196,79,.8));
+}
+.diwali-greet .dvl-rule.r{background:linear-gradient(90deg,rgba(255,196,79,.8),transparent)}
+.diwali-greet span.dvl-script{
+  font-family:'Instrument Serif',Georgia,'Times New Roman',serif;
+  font-style:italic;
+  font-size:clamp(17px,2.2vw,22px);
+  letter-spacing:.02em;
+  color:#ffd98a;
+  text-shadow:0 0 18px rgba(255,170,70,.5);
+  white-space:nowrap;
+}
+.diwali-greet .dvl-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--dvl-flame);
+  box-shadow:0 0 10px 2px rgba(255,164,60,.7);
+}
+/* inner pages: page-hero greeting (injected by diwali.js) */
+.diwali-hero-greet{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  margin:0 0 16px;
+  padding:8px 22px;
+  border-radius:100px;
+  border:1px solid rgba(255,154,61,.4);
+  background:rgba(255,138,42,.09);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  font-family:'Instrument Serif',Georgia,'Times New Roman',serif;
+  font-style:italic;
+  font-size:15px;
+  letter-spacing:.02em;
+  color:#ffd98a;
+  text-shadow:0 0 14px rgba(255,170,70,.45);
+}
+
+.hero-badge{
+  border-color:rgba(255,154,61,.4);
+  background:rgba(255,138,42,.1);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+}
+.hero-badge .pulse{
+  background:var(--dvl-flame);
+  box-shadow:0 0 10px var(--dvl-flame);
+}
+
+/* rangoli mandala, slowly rotating (GPU transform) */
+.diwali-rangoli{
+  position:absolute;
+  right:-150px;
+  bottom:-170px;
+  width:480px;height:480px;
+  z-index:1;
+  pointer-events:none;
+  opacity:.45;
+  contain:layout paint;
+  will-change:transform;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23ff9a3d' stroke-width='1'%3E%3Ccircle cx='100' cy='100' r='96' stroke-opacity='.28'/%3E%3Ccircle cx='100' cy='100' r='78' stroke-opacity='.4'/%3E%3Ccircle cx='100' cy='100' r='58' stroke-opacity='.5'/%3E%3Ccircle cx='100' cy='100' r='36' stroke-opacity='.6'/%3E%3Ccircle cx='100' cy='100' r='14' fill='%23f2711c' fill-opacity='.32' stroke-opacity='.7'/%3E%3C/g%3E%3Cg stroke='%23ffd98a' stroke-width='.8' fill='none'%3E%3Cpath d='M100 22 L126 74 L182 74 L138 108 L154 164 L100 130 L46 164 L62 108 L18 74 L74 74 Z' stroke-opacity='.5'/%3E%3Cpath d='M100 44 L115 74 L148 70 L126 96 L134 128 L100 112 L66 128 L74 96 L52 70 L85 74 Z' stroke-opacity='.38'/%3E%3C/g%3E%3Cg fill='%23ff9a3d' fill-opacity='.4'%3E%3Ccircle cx='100' cy='34' r='2.4'/%3E%3Ccircle cx='100' cy='166' r='2.4'/%3E%3Ccircle cx='34' cy='100' r='2.4'/%3E%3Ccircle cx='166' cy='100' r='2.4'/%3E%3Ccircle cx='56' cy='56' r='2'/%3E%3Ccircle cx='144' cy='56' r='2'/%3E%3Ccircle cx='56' cy='144' r='2'/%3E%3Ccircle cx='144' cy='144' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:contain;
+  background-repeat:no-repeat;
+  animation:dvlRangoliSpin 140s linear infinite;
+}
+@keyframes dvlRangoliSpin{to{transform:rotate(360deg)}}
+
+/* ---------- 6. Typography: luxe static gold (no frame-by-frame repaint) ---------- */
+.hero-title .line-gold{
+  background:linear-gradient(92deg,#ffd98a 0%,#fff3d0 30%,#ffb84d 62%,#ffd98a 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  filter:drop-shadow(0 2px 16px rgba(255,150,60,.38));
+}
+.kicker{color:var(--dvl-saffron)}
+.kicker::before{
+  content:'✣';
+  margin-right:8px;
+  color:var(--dvl-flame);
+  opacity:.8;
+}
+.sec-title .gold,.page-hero h1 .gold,.cta-band h2 .gold{
+  background:linear-gradient(92deg,#ffd98a,#fff3d0 45%,#ffb84d);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+}
+
+/* ---------- 7. Buttons: flame gradient ---------- */
+.btn-primary,.btn-dl{
+  background:linear-gradient(135deg,#ffc058 0%,#ff9a3d 46%,#e8601d 100%);
+  color:#1c0900;
+}
+.btn-primary:hover,.btn-dl:hover{
+  box-shadow:0 14px 34px rgba(255,138,42,.45);
+}
+.btn-secondary:hover{
+  color:var(--dvl-saffron);
+  border-color:rgba(255,154,61,.55);
+}
+.btn.btn-share{
+  background:rgba(255,138,42,.1);
+  border-color:rgba(255,154,61,.45);
+  color:var(--dvl-saffron);
+}
+.btn.btn-share:hover{
+  background:linear-gradient(135deg,#ffc058,#e8601d);
+  border-color:#ffc058;
+  color:#1c0900;
+}
+
+/* ---------- 8. Marquee: glowing diyas between items ---------- */
+.marquee-item .dot{
+  background:radial-gradient(circle at 50% 42%,#fff3c9 0%,#ffc24f 55%,#f2711c 100%);
+  width:7px;height:7px;
+  box-shadow:0 0 8px 2px rgba(255,164,60,.6);
+  animation:dvlTwinkle 3s ease-in-out infinite;
+}
+.marquee-wrap{
+  border-color:rgba(255,154,61,.14);
+  background:linear-gradient(90deg,rgba(255,138,42,.05),transparent 30%,transparent 70%,rgba(255,138,42,.05));
+}
+
+/* ---------- 9. Sections & cards: warm festive hairlines (cheap hovers) ---------- */
+.section-head::before,
+.stat::before{
+  background:linear-gradient(90deg,transparent,var(--dvl-saffron),transparent);
+}
+.cat-chip.gold,.pc-badge.gold{
+  background:linear-gradient(135deg,#ffc058,#e8601d);
+  color:#1c0900;
+}
+.category-card,.product-card,.feat,.step{
+  box-shadow:0 0 0 1px rgba(255,154,61,.06);
+}
+.category-card:hover,.product-card:hover{
+  box-shadow:0 0 0 1px rgba(255,154,61,.3),0 24px 60px rgba(0,0,0,.55);
+}
+.category-card:hover .cat-icon{
+  color:var(--dvl-flame);
+}
+.feat-icon{
+  background:rgba(255,138,42,.1);
+  border-color:rgba(255,154,61,.35);
+}
+.step .material-symbols-outlined,.feat-icon{
+  color:var(--dvl-saffron);
+}
+.icon-btn.gold{
+  background:linear-gradient(135deg,#ffc058,#e8601d);
+}
+
+/* ---------- 10. Stats: ember numerals (static glow) ---------- */
+.stat-num{
+  color:var(--dvl-flame);
+  text-shadow:0 0 30px rgba(255,150,60,.35);
+}
+
+/* ---------- 11. CTA band: diya-lit invitation ---------- */
+.cta-band{
+  box-shadow:0 0 0 1px rgba(255,154,61,.16) inset,0 60px 120px rgba(0,0,0,.6);
+}
+
+/* ---------- 12. Footer: farewell glow ---------- */
+footer{
+  background:
+    radial-gradient(ellipse 60% 42% at 50% 0%,rgba(255,138,42,.08),transparent 65%),
+    var(--ink);
+}
+.diwali-foot-greet{
+  position:relative;
+  overflow:hidden;
+  contain:paint;
+  border-top:1px solid rgba(255,154,61,.18);
+  padding:34px 0 30px;
+  text-align:center;
+}
+.diwali-foot-greet .dvl-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+.diwali-foot-greet .dvl-diya{transform:scale(1.35)}
+.diwali-foot-greet h3{
+  font-family:'Instrument Serif',Georgia,'Times New Roman',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(24px,3.4vw,34px);
+  margin:0 0 8px;
+  background:linear-gradient(92deg,#ffd98a,#fff3d0 40%,#ffb84d 75%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+}
+.diwali-foot-greet p{
+  color:var(--muted);
+  font-size:12px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin:0;
+}
+.diwali-foot-greet p b{color:var(--dvl-saffron);font-weight:700}
+
+/* ---------- 13. Mobile menu festive edge ---------- */
+.mobile-menu{background:#120804}
+.mobile-menu a:active,.mobile-menu a:hover{color:var(--dvl-saffron)}
+
+/* ---------- 14. Reduced motion / smaller screens ---------- */
+@media (max-width:760px){
+  .diwali-ribbon{padding:0 16px;gap:10px}
+  .diwali-ribbon .dvl-sep{display:none}
+  .diwali-ribbon-text{letter-spacing:.08em;font-size:10px;gap:9px;white-space:normal;text-align:center;line-height:1.4}
+  .diwali-toran{height:64px;background-size:auto 64px;top:86px}
+  .diwali-rangoli{width:300px;height:300px;right:-120px;bottom:-130px;opacity:.32}
+  .diwali-hero-greet{font-size:13px;padding:7px 16px;gap:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .diwali-ribbon::after,
+  .diwali-toran,
+  .marquee-item .dot,
+  .dvl-diya::before,
+  .diwali-rangoli,
+  .diwali-ribbon .dvl-spark{
+    animation:none;
+  }
+  #diwali-canvas{display:none}
+}
+@media print{
+  .diwali-ribbon,.diwali-toran,.diwali-rangoli,#diwali-canvas,.diwali-foot-greet{display:none}
+}
